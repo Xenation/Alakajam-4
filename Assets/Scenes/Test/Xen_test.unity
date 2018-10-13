@@ -314,6 +314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1d2195742f9bc47b3c89fca9588a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stabiliseEffectPrefab: {fileID: 1618700872015058, guid: 57f56f7a91b389c44be0334112a702c5,
+    type: 2}
 --- !u!1 &1630573425
 GameObject:
   m_ObjectHideFlags: 0

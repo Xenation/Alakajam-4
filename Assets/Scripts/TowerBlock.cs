@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Alakajam4 {
+	[RequireComponent(typeof(Collider))]
 	public class TowerBlock : MonoBehaviour {
 
 		public Element element;
@@ -30,7 +31,6 @@ namespace Alakajam4 {
 		private Vector3Int _position;
 		private TowerFloor floor;
 		protected Tower tower;
-		private Collider col;
 		private float startHeight;
 		private float destinationHeight;
 		private float transitionProgress;
@@ -46,7 +46,6 @@ namespace Alakajam4 {
 		}
 
 		private void Awake() {
-			col = GetComponent<Collider>();
 			onDestroyEffect = GetComponentInChildren<ParticleSystem>();
 		}
 
