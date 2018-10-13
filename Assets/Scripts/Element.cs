@@ -3,11 +3,11 @@
 namespace Alakajam4 {
 	public enum Element : int {
 		None = 0,
-		Elem1 = 1,
-		Elem2 = 2,
-		Elem3 = 3,
-		Elem4 = 4,
-		NeutralElement = 5,
+		Hyladron = 1,
+		Trihogene = 2,
+		Kyrium = 3,
+		Jaziode = 4,
+		Paruflore = 5,
 		ExplodeElement = 6
 	}
 	public static class ElementExt {
