@@ -42,6 +42,7 @@ namespace Alakajam4 {
 				}
 				currentProb += elements[elemIndex].spawnChance;
 			}
+			if (elemIndex == elements.Length) elemIndex = 0;
 			return (Element) elemIndex;
 		}
 

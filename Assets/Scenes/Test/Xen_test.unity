@@ -208,6 +208,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerSize: {x: 3, y: 15, z: 2}
   blockSize: 1
+  maxInstability: 15
+  timeToMaxInstability: 10
+  timeBetweenInstabilities: 5
 --- !u!4 &295193980
 Transform:
   m_ObjectHideFlags: 0

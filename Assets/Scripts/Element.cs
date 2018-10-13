@@ -13,10 +13,13 @@ namespace Alakajam4 {
 	public static class ElementExt {
 
 		public static readonly int[,] reactionMatrice = {
-			{0, 5, 4, 2},
-			{5, 0, 1, 3},
-			{4, 1, 0, 0},
-			{2, 3, 0, 0}
+			{0, 0, 0, 0, 0, 0, 0},
+			{0, 0, 6, 0, 2, 0, 0},
+			{0, 6, 0, 0, 3, 0, 0},
+			{0, 0, 0, 0, 0, 0, 0},
+			{0, 2, 3, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0, 0, 0}
 		};
 
 		public static Element ReactWith(this Element elem, Element other) {

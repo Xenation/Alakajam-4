@@ -12,12 +12,12 @@ namespace Alakajam4 {
 
 		private void Update() {
 			
-			if (Input.GetMouseButtonDown(0)) {
+			if (Input.GetMouseButton(0)) {
 				Vector3 mPos = Input.mousePosition;
 				Ray ray = cam.ScreenPointToRay(mPos);
 				RaycastHit hit;
 				if (Physics.Raycast(ray, out hit, 200f, LayerMask.GetMask("Blocks"))) {
-					hit.collider.GetComponent<TowerBlock>().DestroyBlock();
+					hit.collider.GetComponent<TowerBlock>().isStabilised = true;
 				}
 			}
 
