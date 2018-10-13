@@ -10,6 +10,7 @@ namespace Alakajam4 {
 		public float timeToMaxInstability = 10f;
 		public float timeBetweenInstabilities = 20f;
 		public float timeToExplode = 2f;
+		public Color unstableGlowColor = Color.red;
 
 		public TowerBlock this[Vector3Int pos] {
 			get {
@@ -45,7 +46,7 @@ namespace Alakajam4 {
 				while (this[pos] == null || this[pos].element == Element.ExplodeElement) { // unsafe
 					pos = new Vector3Int(Random.Range(0, towerSize.x), Random.Range(0, towerSize.y), Random.Range(0, towerSize.z));
 				}
-				this[pos].isInstable = true;
+				this[pos].isUnstable = true;
 			}
 		}
 
