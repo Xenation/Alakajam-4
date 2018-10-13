@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 23753105883957758}
   - component: {fileID: 114558369153707574}
   - component: {fileID: 65052503809982996}
+  - component: {fileID: 114108827423573334}
   m_Layer: 9
   m_Name: Kyrium
   m_TagString: Untagged
@@ -233,6 +234,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0000002, z: 1.0000002}
   m_Center: {x: -0.000000014901161, y: -0.000000014901165, z: 0}
+--- !u!114 &114108827423573334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593056371087448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533b72fef13be004988cd4fe8ae19eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0, g: 0, b: 0, a: 0}
+  lerpFactor: 10
 --- !u!114 &114558369153707574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -247,7 +261,6 @@ MonoBehaviour:
   element: 3
   fallSpeed: 2
   reactCooldown: 0.2
-  isInstable: 0
   instability: 0
   isStabilised: 0
 --- !u!114 &114586173205560258

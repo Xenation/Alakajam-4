@@ -8,7 +8,20 @@ namespace Alakajam4 {
 		public float fallSpeed; // TODO replace by anim
 		public float reactCooldown = .2f;
 		public bool isInTransit { get; private set; }
-		public bool isInstable = false;
+		public bool isUnstable {
+			get {
+				return _isUnstable;
+			}
+			set {
+				_isUnstable = value;
+				if (_isUnstable) {
+					glower.GlowOn(tower.unstableGlowColor);
+				} else {
+					glower.GlowOff();
+				}
+			}
+		}
+		private bool _isUnstable = false;
 		public float instability = 0f;
 		public bool isStabilised = false;
 		public Vector3Int position {
@@ -37,6 +50,7 @@ namespace Alakajam4 {
 		private float lastReactTime = -1000f;
 		private float instabilityChange = 0f;
 		private ParticleSystem onDestroyEffect;
+		private GlowObjectCmd glower;
 
 		public virtual void Init(TowerFloor floor, Vector3Int pos) {
 			this.floor = floor;
@@ -47,6 +61,7 @@ namespace Alakajam4 {
 
 		private void Awake() {
 			onDestroyEffect = GetComponentInChildren<ParticleSystem>();
+			glower = GetComponent<GlowObjectCmd>();
 		}
 
 		private void Update() {
@@ -72,14 +87,14 @@ namespace Alakajam4 {
 				}
 				transform.position = new Vector3(transform.position.x, Mathf.Lerp(startHeight, destinationHeight, transitionProgress), transform.position.z);
 			}
-			if (isInstable) {
+			if (isUnstable) {
 				instability += instabilityChange;
 				transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, (Random.value - .5f) * instability, transform.rotation.eulerAngles.z);
 				if (instability > tower.maxInstability) {
 					DestroyBlock();
 				} else if (instability <= 0f) {
 					instability = 0f;
-					isInstable = false;
+					isUnstable = false;
 				}
 			}
 		}

@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 23285837367710086}
   - component: {fileID: 114399371257053212}
   - component: {fileID: 65827017137647022}
+  - component: {fileID: 114845362839125592}
   m_Layer: 9
   m_Name: Paruflore
   m_TagString: Untagged
@@ -258,7 +259,6 @@ MonoBehaviour:
   element: 5
   fallSpeed: 2
   reactCooldown: 0.2
-  isInstable: 0
   instability: 0
   isStabilised: 0
 --- !u!114 &114484359928970122
@@ -272,6 +272,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d5400631bf7bf40b554bcb6923b152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114845362839125592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1783895306167578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533b72fef13be004988cd4fe8ae19eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0, g: 0, b: 0, a: 0}
+  lerpFactor: 10
 --- !u!198 &198882940494232848
 ParticleSystem:
   m_ObjectHideFlags: 1
