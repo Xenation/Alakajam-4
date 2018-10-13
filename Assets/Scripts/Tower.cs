@@ -9,6 +9,7 @@ namespace Alakajam4 {
 		public float maxInstability = 15f;
 		public float timeToMaxInstability = 10f;
 		public float timeBetweenInstabilities = 20f;
+		public float timeToExplode = 2f;
 
 		public TowerBlock this[Vector3Int pos] {
 			get {
@@ -41,7 +42,7 @@ namespace Alakajam4 {
 			if (Time.time - lastInstabilityTime > timeBetweenInstabilities) {
 				lastInstabilityTime = Time.time;
 				Vector3Int pos = new Vector3Int(Random.Range(0, towerSize.x), Random.Range(0, towerSize.y), Random.Range(0, towerSize.z));
-				while (this[pos] == null) { // unsafe
+				while (this[pos] == null || this[pos].element == Element.ExplodeElement) { // unsafe
 					pos = new Vector3Int(Random.Range(0, towerSize.x), Random.Range(0, towerSize.y), Random.Range(0, towerSize.z));
 				}
 				this[pos].isInstable = true;

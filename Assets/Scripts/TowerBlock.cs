@@ -29,15 +29,16 @@ namespace Alakajam4 {
 		
 		private Vector3Int _position;
 		private TowerFloor floor;
-		private Tower tower;
+		protected Tower tower;
 		private Collider col;
 		private float startHeight;
 		private float destinationHeight;
 		private float transitionProgress;
 		private float lastReactTime = -1000f;
 		private float instabilityChange = 0f;
+		private ParticleSystem onDestroyEffect;
 
-		public void Init(TowerFloor floor, Vector3Int pos) {
+		public virtual void Init(TowerFloor floor, Vector3Int pos) {
 			this.floor = floor;
 			tower = floor.tower;
 			position = pos;
@@ -46,6 +47,7 @@ namespace Alakajam4 {
 
 		private void Awake() {
 			col = GetComponent<Collider>();
+			onDestroyEffect = GetComponentInChildren<ParticleSystem>();
 		}
 
 		private void Update() {
@@ -55,6 +57,11 @@ namespace Alakajam4 {
 			} else {
 				instabilityChange = tower.maxInstability / tower.timeToMaxInstability * Time.fixedDeltaTime;
 			}
+			SubUpdate();
+		}
+
+		protected virtual void SubUpdate() {
+			
 		}
 
 		private void FixedUpdate() {
@@ -68,7 +75,7 @@ namespace Alakajam4 {
 			}
 			if (isInstable) {
 				instability += instabilityChange;
-				transform.rotation = Quaternion.Euler(transform.rotation.x, (Random.value - .5f) * instability, transform.rotation.z);
+				transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, (Random.value - .5f) * instability, transform.rotation.eulerAngles.z);
 				if (instability > tower.maxInstability) {
 					DestroyBlock();
 				} else if (instability <= 0f) {
@@ -93,6 +100,9 @@ namespace Alakajam4 {
 				block.StartDropTransition();
 			}
 			Destroy(gameObject);
+			onDestroyEffect.transform.SetParent(transform.parent);
+			onDestroyEffect.Play();
+			onDestroyEffect.GetComponent<AutoDestroyParticleSystem>().enabled = true;
 		}
 
 		public TowerBlock[] GetFloorAdjacents() {

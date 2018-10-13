@@ -211,6 +211,7 @@ MonoBehaviour:
   maxInstability: 15
   timeToMaxInstability: 10
   timeBetweenInstabilities: 5
+  timeToExplode: 2
 --- !u!4 &295193980
 Transform:
   m_ObjectHideFlags: 0
@@ -296,7 +297,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.120590135, y: 0.37940884, z: -0.049950223, w: 0.9159759}
-  m_LocalPosition: {x: -8.5, y: 11, z: -7.5}
+  m_LocalPosition: {x: -9.61, y: 12.07, z: -8.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -345,22 +346,22 @@ MonoBehaviour:
     prefab: {fileID: 0}
     spawnChance: 0
   - element: 1
-    prefab: {fileID: 1393538046712292, guid: 79064ca451ea1b24384ade5afa549976, type: 2}
+    prefab: {fileID: 1951412712922272, guid: 214051468811d704ea1e048c39694270, type: 2}
     spawnChance: 0.1
   - element: 2
-    prefab: {fileID: 1393538046712292, guid: 7d0aa797eb0bfac48b5a67d3df5b23a3, type: 2}
+    prefab: {fileID: 1866533190933312, guid: 434211144ea77e44a90c5e8372d6d22b, type: 2}
     spawnChance: 0.1
   - element: 3
-    prefab: {fileID: 1393538046712292, guid: 01a266fa83a7c27488ddcbc15100613f, type: 2}
+    prefab: {fileID: 1593056371087448, guid: d7cd010a6681d8247afcf2be04ec0a97, type: 2}
     spawnChance: 0.1
   - element: 4
-    prefab: {fileID: 1393538046712292, guid: 3475d8ea5ecc77e4796421183a33cad4, type: 2}
+    prefab: {fileID: 1869034402445560, guid: f41bdbbd1c6faa04aaf8ba6dcb840587, type: 2}
     spawnChance: 0.1
   - element: 5
-    prefab: {fileID: 1393538046712292, guid: 8e6da84d42bc6ce4fba569ac17df74ee, type: 2}
+    prefab: {fileID: 1783895306167578, guid: 333fc44062d27fb4188f05614d7eb040, type: 2}
     spawnChance: 0.6
   - element: 6
-    prefab: {fileID: 1393538046712292, guid: db19e1b80ed9d074ba17517e50ac5e71, type: 2}
+    prefab: {fileID: 1391773200731180, guid: f5486343011163a40937bd7da1fa4b98, type: 2}
     spawnChance: 0
 --- !u!4 &1630573427
 Transform:
