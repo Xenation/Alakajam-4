@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
 
 namespace Alakajam4 {
 	public enum Element : int {
@@ -7,7 +7,8 @@ namespace Alakajam4 {
 		Elem2 = 2,
 		Elem3 = 3,
 		Elem4 = 4,
-		ExplodeElement = 5
+		NeutralElement = 5,
+		ExplodeElement = 6
 	}
 	public static class ElementExt {
 
@@ -20,6 +21,10 @@ namespace Alakajam4 {
 
 		public static Element ReactWith(this Element elem, Element other) {
 			return (Element) reactionMatrice[(int) elem, (int) other];
+		}
+
+		public static GameObject GetPrefab(this Element elem) {
+			return ElementsManager.I.GetPrefab(elem);
 		}
 	}
 }

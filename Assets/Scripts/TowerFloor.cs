@@ -3,22 +3,32 @@
 namespace Alakajam4 {
 	public class TowerFloor : MonoBehaviour {
 
-		private TowerBlock[,] blocks;
+		[System.NonSerialized]
+		public Tower tower;
 
-		public void GenerateRandomBlocks(Vector2Int floorSize, float blockSize, GameObject blockPrefab) {
-			blocks = new TowerBlock[floorSize.x, floorSize.y];
-			for (int y = 0; y < floorSize.y; y++) {
-				for (int x = 0; x < floorSize.x; x++) {
-					blocks[x, y] = CreateRandomTowerBlock(blockPrefab, new Vector2Int(x, y), blockSize);
+		private TowerBlock[,,] blocks;
+		private int level;
+
+		public void Init(Tower tower, TowerBlock[,,] blocks, int level) {
+			this.tower = tower;
+			this.blocks = blocks;
+			this.level = level;
+		}
+
+		public void GenerateRandomBlocks() {
+			for (int z = 0; z < tower.towerSize.z; z++) {
+				for (int x = 0; x < tower.towerSize.x; x++) {
+					blocks[x, level, z] = CreateRandomTowerBlock(new Vector3Int(x, level, z), tower.blockSize);
 				}
 			}
 		}
 
-		private TowerBlock CreateRandomTowerBlock(GameObject prefab, Vector2Int pos, float blockSize) {
-			GameObject go = Instantiate(prefab, transform);
-			go.transform.localPosition = new Vector3(pos.x * blockSize, blockSize / 2, pos.y * blockSize);
+		private TowerBlock CreateRandomTowerBlock(Vector3Int pos, float blockSize) {
+			Element element = ElementsManager.I.GetRandomElement();
+			GameObject go = Instantiate(element.GetPrefab(), transform);
+			go.transform.localPosition = new Vector3(pos.x * blockSize, blockSize / 2, pos.z * blockSize);
 			TowerBlock block = go.GetComponent<TowerBlock>();
-			block.element = (Element) Random.Range(1, 5);
+			block.Init(this, pos);
 			return block;
 		}
 
