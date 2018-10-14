@@ -14,14 +14,22 @@ namespace Alakajam4 {
 	public static class ElementExt {
 
 		public static readonly int[][] reactionMatrice = {
-			new int[] {0, 0, 0, 0, 0, 0, 0},
+			/*new int[] {0, 0, 0, 0, 0, 0, 0},
 			new int[] {0, 0, 6, 0, 2, 0, 0},
 			new int[] {0, 6, 0, 0, 3, 0, 0},
 			new int[] {0, 0, 0, 0, 0, 0, 0},
 			new int[] {0, 2, 3, 0, 0, 0, 0},
 			new int[] {0, 0, 0, 0, 0, 0, 0},
-			new int[] {0, 0, 0, 0, 0, 0, 0}
-		};
+			new int[] {0, 0, 0, 0, 0, 0, 0}*/
+
+            new int[] {0, 0, 0, 0, 0, 0, 0},
+            new int[] {0, 0, 3, 4, 6, 0, 0},
+            new int[] {0, 3, 0, 0, 1, 0, 0},
+            new int[] {0, 4, 0, 0, 2, 0, 0},
+            new int[] {0, 6, 1, 2, 0, 0, 0},
+            new int[] {0, 0, 0, 0, 0, 0, 0},
+            new int[] {0, 0, 0, 0, 0, 0, 0}
+        };
 
 		public static readonly Element[] specialElements = {
 			Element.None, Element.ExplodeElement
