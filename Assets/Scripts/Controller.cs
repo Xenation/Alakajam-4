@@ -8,7 +8,7 @@ namespace Alakajam4 {
 
 		private Camera cam;
 		private ParticleSystem stabEffectSystem;
-		private bool stabilizeInProgress = false;
+		private TowerBlock targetedBlock = null;
 
 		private void Awake() {
 			cam = GetComponent<Camera>();
@@ -21,19 +21,27 @@ namespace Alakajam4 {
 			Vector3 mPos = Input.mousePosition;
 			Ray ray = cam.ScreenPointToRay(mPos);
 			RaycastHit hit;
-			if (Input.GetMouseButton(0) && Physics.Raycast(ray, out hit, 200f, LayerMask.GetMask("Blocks"))) {
-				hit.collider.GetComponent<TowerBlock>().isStabilised = true;
-				if (!stabilizeInProgress) {
-					stabilizeInProgress = true;
-					stabEffectSystem.gameObject.SetActive(true);
-					stabEffectSystem.Play(true);
+			if (Physics.Raycast(ray, out hit, 200f, LayerMask.GetMask("Blocks"))) {
+				TowerBlock block = hit.collider.GetComponent<TowerBlock>();
+				if (block != targetedBlock) {
+					if (targetedBlock != null) {
+						targetedBlock.GlowOff();
+					}
+					targetedBlock = block;
+					if (targetedBlock.element == Element.Paruflore) {
+						targetedBlock.GlowValid();
+					} else {
+						targetedBlock.GlowInvalid();
+					}
 				}
-				stabEffectSystem.transform.position = hit.point;
-				stabEffectSystem.transform.rotation = Quaternion.LookRotation(hit.normal);
-			} else if (stabilizeInProgress) {
-				stabilizeInProgress = false;
-				stabEffectSystem.gameObject.SetActive(false);
-				stabEffectSystem.Stop(true);
+				if (Input.GetMouseButtonDown(0)) {
+					if (targetedBlock.element == Element.Paruflore) {
+						targetedBlock.DestroyBlock();
+					}
+				}
+			} else if (targetedBlock != null) {
+				targetedBlock.GlowOff();
+				targetedBlock = null;
 			}
 
 		}

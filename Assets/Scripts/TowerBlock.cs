@@ -9,22 +9,6 @@ namespace Alakajam4 {
 		public float fallSpeed; // TODO replace by anim
 		public float reactCooldown = .2f;
 		public bool isInTransit { get; private set; }
-		public bool isUnstable {
-			get {
-				return _isUnstable;
-			}
-			set {
-				_isUnstable = value;
-				if (_isUnstable) {
-					glower.GlowOn(tower.unstableGlowColor);
-				} else {
-					glower.GlowOff();
-				}
-			}
-		}
-		private bool _isUnstable = false;
-		public float instability = 0f;
-		public bool isStabilised = false;
 		public Vector3Int position {
 			get {
 				return _position;
@@ -49,7 +33,6 @@ namespace Alakajam4 {
 		private float destinationHeight;
 		private float transitionProgress;
 		private float lastReactTime = -1000f;
-		private float instabilityChange = 0f;
 		private ParticleSystem onDestroyEffect;
 		private GlowObjectCmd glower;
 
@@ -57,6 +40,7 @@ namespace Alakajam4 {
 			this.floor = floor;
 			tower = floor.tower;
 			_position = pos;
+			tower[_position] = this;
 			isInTransit = false;
 		}
 
@@ -66,12 +50,6 @@ namespace Alakajam4 {
 		}
 
 		private void Update() {
-			if (isStabilised) {
-				instabilityChange = -tower.maxInstability / tower.timeToMaxInstability * Time.fixedDeltaTime;
-				isStabilised = false;
-			} else {
-				instabilityChange = tower.maxInstability / tower.timeToMaxInstability * Time.fixedDeltaTime;
-			}
 			SubUpdate();
 		}
 
@@ -87,16 +65,6 @@ namespace Alakajam4 {
 					isInTransit = false;
 				}
 				transform.position = new Vector3(transform.position.x, Mathf.Lerp(startHeight, destinationHeight, transitionProgress), transform.position.z);
-			}
-			if (isUnstable) {
-				instability += instabilityChange;
-				transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, (Random.value - .5f) * instability, transform.rotation.eulerAngles.z);
-				if (instability > tower.maxInstability) {
-					DestroyBlock();
-				} else if (instability <= 0f) {
-					instability = 0f;
-					isUnstable = false;
-				}
 			}
 		}
 
@@ -168,6 +136,18 @@ namespace Alakajam4 {
 
 		public void MarkReacted() {
 			lastReactTime = Time.time;
+		}
+
+		public void GlowValid() {
+			glower.GlowOn(tower.validGlowColor);
+		}
+
+		public void GlowInvalid() {
+			glower.GlowOn(tower.invalidGlowColor);
+		}
+
+		public void GlowOff() {
+			glower.GlowOff();
 		}
 
 	}

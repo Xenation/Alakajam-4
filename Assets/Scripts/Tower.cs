@@ -6,11 +6,9 @@ namespace Alakajam4 {
 
 		public Vector3Int towerSize;
 		public float blockSize;
-		public float maxInstability = 15f;
-		public float timeToMaxInstability = 10f;
-		public float timeBetweenInstabilities = 20f;
 		public float timeToExplode = 2f;
-		public Color unstableGlowColor = Color.red;
+		public Color invalidGlowColor = Color.red;
+		public Color validGlowColor = Color.green;
 
 		public TowerBlock this[Vector3Int pos] {
 			get {
@@ -29,10 +27,8 @@ namespace Alakajam4 {
 
 		private TowerFloor[] floors;
 		private TowerBlock[,,] blocks;
-		private float lastInstabilityTime = 0f;
 
 		private void Start() {
-			lastInstabilityTime = Time.time;
 			floors = new TowerFloor[towerSize.y];
 			blocks = new TowerBlock[towerSize.x, towerSize.y, towerSize.z];
 			GenerateNonReactiveTower();
@@ -40,14 +36,6 @@ namespace Alakajam4 {
 
 		private void Update() {
 			ComputeReactions();
-			if (Time.time - lastInstabilityTime > timeBetweenInstabilities) {
-				lastInstabilityTime = Time.time;
-				Vector3Int pos = new Vector3Int(Random.Range(0, towerSize.x), Random.Range(0, towerSize.y), Random.Range(0, towerSize.z));
-				while (this[pos] == null || this[pos].element == Element.ExplodeElement) { // unsafe
-					pos = new Vector3Int(Random.Range(0, towerSize.x), Random.Range(0, towerSize.y), Random.Range(0, towerSize.z));
-				}
-				this[pos].isUnstable = true;
-			}
 		}
 
 		private void GenerateRandomTower() {

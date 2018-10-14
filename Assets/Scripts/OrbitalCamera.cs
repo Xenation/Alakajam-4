@@ -12,7 +12,7 @@ public class OrbitalCamera : MonoBehaviour {
 
 	void Start() {
 		cam = GetComponent<Camera>();
-		pointRotation = new Vector3(Tower.I.transform.position.x + (Tower.I.towerSize.x * Tower.I.blockSize) / 2f - Tower.I.blockSize / 2f, transform.position.y - 8f, Tower.I.transform.position.z + (Tower.I.towerSize.z * Tower.I.blockSize) / 2f - Tower.I.blockSize / 2f);
+		pointRotation = new Vector3(Tower.I.transform.position.x + (Tower.I.towerSize.x * Tower.I.blockSize) / 2f - Tower.I.blockSize / 2f, transform.position.y - 5f, Tower.I.transform.position.z + (Tower.I.towerSize.z * Tower.I.blockSize) / 2f - Tower.I.blockSize / 2f);
 	}
 
 	void Update() {

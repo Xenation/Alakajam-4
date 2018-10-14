@@ -55,7 +55,7 @@ namespace Alakajam4 {
 
 			//Debug.Log(string.Format("glowable obj count: {0}", glowableObjects.Count));
 			for (int i = 0; i < glowableObjects.Count; i++) {
-				if (glowableObjects[i].currentColor.Equals(Color.clear)) continue;
+				if (!glowableObjects[i].visible) continue;
 				commandBuffer.SetGlobalColor(glowColorID, glowableObjects[i].currentColor);
 				for (int j = 0; j < glowableObjects[i].renderers.Length; j++) {
 					//Debug.Log(string.Format("{0} length: {1}", glowableObjects[i].name, glowableObjects[i].renderers.Length));
