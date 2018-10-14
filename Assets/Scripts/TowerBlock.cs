@@ -75,13 +75,17 @@ namespace Alakajam4 {
 			destinationHeight = floor.transform.position.y + tower.blockSize / 2f;
 		}
 
-		public void DestroyBlock() {
+		public void DestroyBlock(bool gainScore = true) {
 			for (int y = position.y + 1; y < tower.towerSize.y; y++) {
 				TowerBlock block = tower[new Vector3Int(position.x, y, position.z)];
 				if (block == null) break;
 				block.position += Vector3Int.down;
 				block.StartDropTransition();
 			}
+			if (gainScore) {
+				GameManager.I.OnUncontrolledDestroy();
+			}
+			tower.NotifyBlockDestroy(this);
 			Destroy(gameObject);
 			onDestroyEffect.transform.SetParent(transform.parent);
 			onDestroyEffect.Play();
@@ -132,6 +136,7 @@ namespace Alakajam4 {
 			block.Init(tower.GetFloor(_position.y), position);
 			block.MarkReacted();
 			Destroy(gameObject);
+			GameManager.I.OnTransformation();
 		}
 
 		public void MarkReacted() {

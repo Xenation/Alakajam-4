@@ -4,6 +4,9 @@ using Xenon;
 namespace Alakajam4 {
 	public class Tower : Singleton<Tower> {
 
+		public delegate void OnBlockDestroyed(TowerBlock block);
+		public event OnBlockDestroyed OnBlockDestroyedEvent;
+
 		public Vector3Int towerSize;
 		public float blockSize;
 		public float timeToExplode = 2f;
@@ -28,7 +31,7 @@ namespace Alakajam4 {
 		private TowerFloor[] floors;
 		private TowerBlock[,,] blocks;
 
-		private void Start() {
+		private void Awake() {
 			floors = new TowerFloor[towerSize.y];
 			blocks = new TowerBlock[towerSize.x, towerSize.y, towerSize.z];
 			GenerateNonReactiveTower();
@@ -113,6 +116,23 @@ namespace Alakajam4 {
 			adjArray[1] = this[position + new Vector3Int(0, 0, -1)];
 			adjArray[2] = this[position + new Vector3Int(1, 0, 0)];
 			adjArray[3] = this[position + new Vector3Int(-1, 0, 0)];
+		}
+
+		public void NotifyBlockDestroy(TowerBlock block) {
+			if (OnBlockDestroyedEvent != null) {
+				OnBlockDestroyedEvent.Invoke(block);
+			}
+		}
+
+		public void DestroyAllNeutrals() {
+			for (int y = towerSize.y - 1; y >= 0; y--) {
+				for (int z = towerSize.z - 1; z >= 0; z--) {
+					for (int x = towerSize.x - 1; x >= 0; x--) {
+						if (blocks[x, y, z] == null || blocks[x, y, z].element != Element.Paruflore) continue;
+						blocks[x, y, z].DestroyBlock(false);
+					}
+				}
+			}
 		}
 
 	}

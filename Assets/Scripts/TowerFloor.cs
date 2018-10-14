@@ -38,7 +38,6 @@ namespace Alakajam4 {
 		public void GenerateNonReactiveFloor() {
 			Vector3Int originPos = new Vector3Int(0, level, 0);
 			TowerBlock origin = CreateRandomTowerBlock(originPos, tower.blockSize);
-			//tower[originPos] = origin;
 			GenerateNonReactiveAdjacents(origin);
 		}
 
@@ -54,7 +53,6 @@ namespace Alakajam4 {
 					nonReactives.IntersectWith(adjAdj[j].element.GetAllNonReactive());
 				}
 				TowerBlock adj = CreateTowerBlock(nonReactives.GetRandom(), validAdj[i], tower.blockSize);
-				//tower[validAdj[i]] = adj;
 				GenerateNonReactiveAdjacents(adj);
 			}
 		}

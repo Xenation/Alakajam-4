@@ -15,9 +15,10 @@ namespace Alakajam4 {
 				TowerBlock[] adjacents = new TowerBlock[6];
 				GetCrossFloorAdjacents(ref adjacents);
 				for (int i = 0; i < adjacents.Length; i++) {
-					if (adjacents[i] == null || adjacents[i].element == Element.ExplodeElement) continue;
+					if (adjacents[i] == null || adjacents[i].element == Element.ExplodeElement || adjacents[i].isInTransit) continue;
 					adjacents[i].DestroyBlock();
 				}
+				GameManager.I.OnExplosion();
 				DestroyBlock();
 			}
 		}

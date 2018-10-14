@@ -5,6 +5,8 @@ namespace Alakajam4 {
 	public class Controller : MonoBehaviour {
 
 		public GameObject stabiliseEffectPrefab;
+		[System.NonSerialized]
+		public bool locked = false;
 
 		private Camera cam;
 		private ParticleSystem stabEffectSystem;
@@ -17,6 +19,13 @@ namespace Alakajam4 {
 		}
 
 		private void Update() {
+			if (locked) {
+				if (targetedBlock != null) {
+					targetedBlock.GlowOff();
+					targetedBlock = null;
+				}
+				return;
+			}
 
 			Vector3 mPos = Input.mousePosition;
 			Ray ray = cam.ScreenPointToRay(mPos);
@@ -36,7 +45,7 @@ namespace Alakajam4 {
 				}
 				if (Input.GetMouseButtonDown(0)) {
 					if (targetedBlock.element == Element.Paruflore) {
-						targetedBlock.DestroyBlock();
+						targetedBlock.DestroyBlock(false);
 					}
 				}
 			} else if (targetedBlock != null) {

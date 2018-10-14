@@ -6,6 +6,8 @@ public class OrbitalCamera : MonoBehaviour {
 
 	public float vertSensivity = 10f;
 	public float rotSensivity = 3f;
+	[System.NonSerialized]
+	public bool locked = false;
 
 	private Camera cam;
 	private Vector3 pointRotation;
@@ -13,9 +15,11 @@ public class OrbitalCamera : MonoBehaviour {
 	void Start() {
 		cam = GetComponent<Camera>();
 		pointRotation = new Vector3(Tower.I.transform.position.x + (Tower.I.towerSize.x * Tower.I.blockSize) / 2f - Tower.I.blockSize / 2f, transform.position.y - 5f, Tower.I.transform.position.z + (Tower.I.towerSize.z * Tower.I.blockSize) / 2f - Tower.I.blockSize / 2f);
+		transform.LookAt(pointRotation);
 	}
 
 	void Update() {
+		if (locked) return;
 
 		if (Input.GetMouseButton(1)) {
 			float xRange = transform.position.x - pointRotation.x;
