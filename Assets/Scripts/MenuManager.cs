@@ -15,5 +15,9 @@ namespace Alakajam4 {
 			SceneSwitchManager.I.QuitGame();
 		}
 
+		public void BtnHowToPlayPressed() {
+			SceneSwitchManager.I.LoadHowToPlay();
+		}
+
 	}
 }
