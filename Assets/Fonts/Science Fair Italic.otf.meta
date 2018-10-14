@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: b144b87f508e7e24eb380892c9b9ec61
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Science Fair
+  fontNames:
+  - Science Fair
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8217bcd035f4a674dbe066117ea77321, type: 3}
+  - {fileID: 12800000, guid: 4868bf54745ac8244bb673be48aa0424, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
