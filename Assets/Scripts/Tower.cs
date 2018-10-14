@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Xenon;
 
 namespace Alakajam4 {
-	public class Tower : MonoBehaviour {
+	public class Tower : Singleton<Tower> {
 
 		public Vector3Int towerSize;
 		public float blockSize;
