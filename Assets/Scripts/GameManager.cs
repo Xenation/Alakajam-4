@@ -47,6 +47,22 @@ namespace Alakajam4 {
 		}
 
 		private void Update() {
+			Tower tower = Tower.I;
+			neutralCount = 0;
+			for (int y = 0; y < tower.towerSize.y; y++) {
+				for (int z = 0; z < tower.towerSize.z; z++) {
+					for (int x = 0; x < tower.towerSize.x; x++) {
+						Vector3Int pos = new Vector3Int(x, y, z);
+						if (tower[pos] != null && tower[pos].element == Element.Paruflore) {
+							neutralCount++;
+						}
+					}
+				}
+			}
+			if (neutralCount == 0) {
+				gameEnded = true;
+			}
+
 			procManager.UpdateProcesses(Time.deltaTime);
 
 			scoreText.text = "Score: " + score;
@@ -66,7 +82,7 @@ namespace Alakajam4 {
 		}
 
 		public void OnTransformation() {
-			score += transformationScore;
+			//score += transformationScore;
 		}
 
 		public void OnExplosion() {
@@ -78,12 +94,12 @@ namespace Alakajam4 {
 		}
 
 		public void OnBlockDestroyed(TowerBlock block) {
-			if (block.element == Element.Paruflore) {
-				neutralCount--;
-				if (neutralCount == 0) {
-					gameEnded = true;
-				}
-			}
+			//if (block.element == Element.Paruflore) {
+			//	neutralCount--;
+			//	if (neutralCount == 0) {
+			//		gameEnded = true;
+			//	}
+			//}
 		}
 
 		public void DestroyAllBtnPressed() {

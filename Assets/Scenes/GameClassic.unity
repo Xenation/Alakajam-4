@@ -152,6 +152,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 23446203329063700, guid: 0e958f24279af9e4f9857bebd9963286,
+        type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171865248189410, guid: 0e958f24279af9e4f9857bebd9963286, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e958f24279af9e4f9857bebd9963286, type: 2}
   m_IsPrefabAsset: 0
