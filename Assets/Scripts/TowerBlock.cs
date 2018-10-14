@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Alakajam4 {
 	[RequireComponent(typeof(Collider))]
@@ -55,7 +56,7 @@ namespace Alakajam4 {
 		public virtual void Init(TowerFloor floor, Vector3Int pos) {
 			this.floor = floor;
 			tower = floor.tower;
-			position = pos;
+			_position = pos;
 			isInTransit = false;
 		}
 
@@ -133,6 +134,27 @@ namespace Alakajam4 {
 			adjArray[1] = tower[_position + new Vector3Int(0, 0, -1)];
 			adjArray[2] = tower[_position + new Vector3Int(1, 0, 0)];
 			adjArray[3] = tower[_position + new Vector3Int(-1, 0, 0)];
+		}
+
+		public List<Vector3Int> GetValidAdjacentPositions() {
+			List<Vector3Int> validAdj = new List<Vector3Int>(4);
+			Vector3Int forward = _position + new Vector3Int(0, 0, 1);
+			Vector3Int backwards = _position + new Vector3Int(0, 0, -1);
+			Vector3Int right = _position + new Vector3Int(1, 0, 0);
+			Vector3Int left = _position + new Vector3Int(-1, 0, 0);
+			if (tower.IsInBounds(forward)) {
+				validAdj.Add(forward);
+			}
+			if (tower.IsInBounds(backwards)) {
+				validAdj.Add(backwards);
+			}
+			if (tower.IsInBounds(right)) {
+				validAdj.Add(right);
+			}
+			if (tower.IsInBounds(left)) {
+				validAdj.Add(left);
+			}
+			return validAdj;
 		}
 
 		public void TransformInto(Element element) {

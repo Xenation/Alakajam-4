@@ -42,8 +42,12 @@ namespace Alakajam4 {
 				}
 				currentProb += elements[elemIndex].spawnChance;
 			}
-			if (elemIndex == elements.Length) elemIndex = 0;
+			if (elemIndex == elements.Length) elemIndex = 5;
 			return (Element) elemIndex;
+		}
+
+		public float GetProbability(Element elem) {
+			return elements[(int) elem].spawnChance;
 		}
 
 	}

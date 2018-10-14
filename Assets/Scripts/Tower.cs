@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Xenon;
 
 namespace Alakajam4 {
@@ -36,7 +35,7 @@ namespace Alakajam4 {
 			lastInstabilityTime = Time.time;
 			floors = new TowerFloor[towerSize.y];
 			blocks = new TowerBlock[towerSize.x, towerSize.y, towerSize.z];
-			GenerateRandomTower();
+			GenerateNonReactiveTower();
 		}
 
 		private void Update() {
@@ -56,6 +55,14 @@ namespace Alakajam4 {
 				TowerFloor floor = CreateTowerFloor(i);
 				floors[i] = floor;
 				floor.GenerateRandomBlocks();
+			}
+		}
+
+		private void GenerateNonReactiveTower() {
+			for (int i = 0; i < towerSize.y; i++) {
+				TowerFloor floor = CreateTowerFloor(i);
+				floors[i] = floor;
+				floor.GenerateNonReactiveFloor();
 			}
 		}
 
@@ -103,6 +110,21 @@ namespace Alakajam4 {
 					}
 				}
 			}
+		}
+
+		public bool IsInBounds(Vector3Int pos) {
+			return !(pos.x < 0 || pos.x >= towerSize.x || pos.y < 0 || pos.y >= towerSize.y || pos.z < 0 || pos.z >= towerSize.z);
+		}
+
+		public bool IsValidPositionForSpawn(Vector3Int pos) {
+			return IsInBounds(pos) && blocks[pos.x, pos.y, pos.z] == null;
+		}
+
+		public void GetFloorAdjacents(Vector3Int position, ref TowerBlock[] adjArray) {
+			adjArray[0] = this[position + new Vector3Int(0, 0, 1)];
+			adjArray[1] = this[position + new Vector3Int(0, 0, -1)];
+			adjArray[2] = this[position + new Vector3Int(1, 0, 0)];
+			adjArray[3] = this[position + new Vector3Int(-1, 0, 0)];
 		}
 
 	}

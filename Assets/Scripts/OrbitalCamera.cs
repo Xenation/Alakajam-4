@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Alakajam4;
+﻿using Alakajam4;
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
